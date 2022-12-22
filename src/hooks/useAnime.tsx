@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AnimeContext, AnimeContextShape } from "../contexts/animeContext";
 
 function useAnime() {
-    return useContext<AnimeContextShape | null>(AnimeContext);
+    return useContext<AnimeContextShape>(AnimeContext);
 }
 
 export default useAnime;

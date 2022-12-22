@@ -28,3 +28,35 @@ body {
     height: 100%;
     padding: 20px;
 }
+
+.cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+    gap: 20px;
+    justify-content: center;
+    padding: 60px 0px;
+}
+
+.skeleton-card {
+    width: 200px;
+    height: 300px;
+    border-radius: 20px;
+
+    animation-duration: 2.2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: shimmer;
+    animation-timing-function: linear;
+    background: rgb(185, 185, 185);
+    background: linear-gradient(to right, #d3d3d3 8%, #dfdfdf 18%, #d3d3d3 33%);
+    background-size: 1200px 100%;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1200px 0;
+    }
+    100% {
+        background-position: 1200px 0;
+    }
+}
