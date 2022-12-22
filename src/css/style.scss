@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+
+$body_background: #f1efe3;
+
+*,
+html,
+body,
+*::after,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Open-sans, sans-serif;
+}
+
+body {
+    min-height: 100h;
+
+    background-color: $body_background;
+}
+
+.container {
+    max-width: 1200px;
+    margin-inline: auto;
+    height: 100%;
+    padding: 20px;
+}

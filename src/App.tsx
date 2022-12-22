@@ -1,13 +1,17 @@
 import { useState } from "react";
-import "./App.css";
+import "./css/style.css";
+import Cards from "./Cards";
 import AnimeContextProvider from "./contexts/animeContext";
+import { Container } from "./components/Container";
 
 function App() {
     const [count, setCount] = useState(0);
 
     return (
         <AnimeContextProvider>
-            <h1>Anime</h1>
+            <Container>
+                <Cards />
+            </Container>
         </AnimeContextProvider>
     );
 }
