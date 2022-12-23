@@ -154,4 +154,22 @@ img {
   100% {
     background-position: 1200px 0;
   }
+}
+.custom-tooltip {
+  border-radius: 20px;
+  border: 2px solid red;
+  background-color: white;
+  padding: 20px 40px;
+  text-align: center;
+  outline: none;
+}
+.custom-tooltip ul {
+  list-style-type: none;
+}
+.custom-tooltip ul li {
+  line-height: 2;
+}
+
+.recharts-tooltip-wrapper {
+  outline: none;
 }/*# sourceMappingURL=style.css.map */

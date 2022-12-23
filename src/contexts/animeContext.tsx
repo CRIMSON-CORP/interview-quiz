@@ -51,44 +51,50 @@ const AnimeContextProvider: React.FC<AnimeContextProviderProps> = ({ children })
         let isMounted: boolean = true;
         let controller = new AbortController();
 
-        (async () => {
-            try {
-                setAnimeFetchLoading(true);
-                const response = await fetch(ANIME_API_END_POINT, { signal: controller.signal });
-                if (!response) throw new Error("Network Error!");
-                if (response.status === 500) throw new Error("Server Error!");
+        isMounted &&
+            (async () => {
+                try {
+                    setAnimeFetchError(null);
+                    setAnimeFetchLoading(true);
+                    const response = await fetch(ANIME_API_END_POINT, {
+                        signal: controller.signal,
+                    });
+                    if (!response) throw new Error("Network Error!");
+                    if (response.status === 500) throw new Error("Server Error!");
 
-                const responseData = await response.json();
+                    const responseData = await response.json();
 
-                const formatResponse: AnimeApiDataShape[] = responseData.data.map(
-                    ({
-                        mal_id,
-                        images: {
-                            webp: { image_url },
-                        },
-                        title,
-                        aired: { from, to },
-                        rating,
-                    }: ActualApiDataShape) => ({
-                        mal_id,
-                        image: image_url,
-                        title,
-                        release_date: from,
-                        lastest_date: to,
-                        rating,
-                    })
-                );
-
-                isMounted && setAnimeList(formatResponse);
-            } catch (error: any) {
-                setAnimeFetchError(error.message);
-            } finally {
-                setAnimeFetchLoading(false);
-            }
-        })();
+                    const formatResponse: AnimeApiDataShape[] = responseData.data.map(
+                        ({
+                            mal_id,
+                            images: {
+                                webp: { image_url },
+                            },
+                            title,
+                            aired: { from, to },
+                            rating,
+                        }: ActualApiDataShape) => ({
+                            mal_id,
+                            image: image_url,
+                            title,
+                            release_date: from,
+                            lastest_date: to,
+                            rating,
+                        })
+                    );
+                    setAnimeFetchError(null);
+                    setAnimeList(formatResponse);
+                } catch (error: any) {
+                    setAnimeList([]);
+                    setAnimeFetchError(error.message);
+                } finally {
+                    setAnimeFetchLoading(false);
+                }
+            })();
 
         return () => {
             isMounted = false;
+            controller.abort();
         };
     }, []);
 

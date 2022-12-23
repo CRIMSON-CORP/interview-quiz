@@ -11,9 +11,11 @@ function Cards() {
             <div className="cards-wrapper">
                 {animeFetchLoading &&
                     Array.from(Array(20).keys()).map((index) => <SkeletonCard key={index} />)}
-                {animeList?.map((data, index) => (
-                    <Card key={data.mal_id} {...data} rank={index + 1} />
-                ))}
+                {!animeFetchLoading &&
+                    !animeFetchError &&
+                    animeList?.map((data, index) => (
+                        <Card key={data.mal_id} {...data} rank={index + 1} />
+                    ))}
             </div>
         </section>
     );
