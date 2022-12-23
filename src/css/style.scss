@@ -66,6 +66,8 @@ img {
         box-shadow 400ms ease-out, z-index 400ms ease-out 1s;
     transition-delay: 0s, 0s, 0s, 0s, 1s;
 
+    user-select: none;
+
     .card__image-wrapper {
         flex-grow: 1;
         height: 0;

@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useCallback, useState } from "react";
+import React, { MouseEventHandler, TouchEventHandler, useCallback, useState } from "react";
 import { AnimeApiDataShape } from "../contexts/animeContext";
 
 let timer: ReturnType<typeof setTimeout> = setTimeout(() => null);
@@ -22,11 +22,22 @@ const Card: React.FC<AnimeApiDataShape> = ({
         setCardActive(false);
     }, []);
 
+    const onTouchStart: TouchEventHandler<HTMLElement> =
+        onMouseDown as unknown as TouchEventHandler<HTMLElement>;
+    const onTouchEnd: TouchEventHandler<HTMLElement> =
+        onMouseUp as unknown as TouchEventHandler<HTMLElement>;
+
     const cardClassNames: string = `card ${cardActive ? "card-active" : ""}`;
 
     return (
         <div className="card-wrapper">
-            <article className={cardClassNames} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
+            <article
+                className={cardClassNames}
+                onMouseDown={onMouseDown}
+                onMouseUp={onMouseUp}
+                onTouchStart={onTouchStart}
+                onTouchEnd={onTouchEnd}
+            >
                 <span className="rank">{rank}</span>
                 <div className="card__image-wrapper">
                     <img src={image} alt={title} />
