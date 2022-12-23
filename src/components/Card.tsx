@@ -3,7 +3,14 @@ import { AnimeApiDataShape } from "../contexts/animeContext";
 
 let timer: ReturnType<typeof setTimeout> = setTimeout(() => null);
 
-const Card: React.FC<AnimeApiDataShape> = ({ image, title, release_date, rating, rank }) => {
+const Card: React.FC<AnimeApiDataShape> = ({
+    image,
+    title,
+    release_date,
+    lastest_date,
+    rating,
+    rank,
+}) => {
     const [cardActive, setCardActive] = useState<boolean>(false);
 
     const onMouseDown: MouseEventHandler<HTMLElement> = useCallback(() => {
@@ -28,10 +35,14 @@ const Card: React.FC<AnimeApiDataShape> = ({ image, title, release_date, rating,
                     <p>{title}</p>
                     <div className="card__extra-content">
                         <p>
-                            Release: <span>{release_date}</span>
+                            Release:{" "}
+                            <span>{release_date && new Date(release_date).toDateString()}</span>
                         </p>
                         <p>
-                            Lastest: <span>{release_date || "now"}</span>
+                            Lastest:{" "}
+                            <span>
+                                {lastest_date ? new Date(lastest_date).toDateString() : "now"}
+                            </span>
                         </p>
                         <p>
                             Rating: <span>{rating}</span>

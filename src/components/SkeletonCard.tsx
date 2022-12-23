@@ -1,5 +1,9 @@
 import React from "react";
 
 export const SkeletonCard: React.FC = () => {
-    return <article className="card skeleton-card" />;
+    return (
+        <div className="card-wrapper">
+            <article className="card skeleton-card" />
+        </div>
+    );
 };
